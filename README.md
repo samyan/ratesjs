@@ -1,5 +1,5 @@
 
-# ratesjs
+# ratesjs ![Version](https://img.shields.io/npm/v/ratesjs) ![License](https://img.shields.io/npm/l/ratesjs)
 
 Library for get currencies rates from different sources. The currently supported sources are **Binance** and **Yahoo**.
 
