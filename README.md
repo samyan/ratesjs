@@ -17,8 +17,8 @@ npm i ratesjs
 const  currencyRates = new  CurrencyRates();
 
 const  result = await  currencyRates
-.getProvider('yahoo')
-.getLatest('USD', ['RUB', 'GBP']);
+    .getProvider('yahoo')
+    .getLatest('USD', ['RUB', 'GBP']);
 ````
 
 ```sh
@@ -32,8 +32,8 @@ const  result = await  currencyRates
 const  currencyRates = new  CurrencyRates();
 
 const  result = await  currencyRates
-.getProvider('binance')
-.getLatest('USDT', ['BTC', 'ETH']);
+    .getProvider('binance')
+    .getLatest('USDT', ['BTC', 'ETH']);
 ````
 
 ```sh
