@@ -21,7 +21,7 @@ const  result = await  currencyRates
 .getLatest('USD', ['RUB', 'GBP']);
 ````
 
-```json
+```sh
 { RUB: '73.6008', GBP: '0.82162' }
 ```
 
@@ -36,6 +36,6 @@ const  result = await  currencyRates
 .getLatest('USDT', ['BTC', 'ETH']);
 ````
 
-```json
+```sh
 { BTC: '22175.80000000', ETH: '1552.45000000' }
 ```
