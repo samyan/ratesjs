@@ -48,7 +48,7 @@ class YahooProvider extends AbstractProvider {
 			const { symbol, regularMarketPrice } = originalRate;
 
 			// Extract currency
-			const currency: string = symbol.substring(this.base.length, symbol.indexOf('=X'));
+			const currency: string = symbol.substring(base.length, symbol.indexOf('=X'));
 			// Insert
 			rates[currency] = String(regularMarketPrice);
 		});
