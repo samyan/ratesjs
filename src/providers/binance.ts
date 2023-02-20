@@ -47,7 +47,8 @@ class BinanceProvider extends AbstractProvider {
 			const { symbol, price } = originalRate;
 
 			// Extract currency
-			const currency: string = symbol.substring(0, symbol.indexOf(this.base));
+			const currency: string = symbol.substring(0, symbol.indexOf(base));
+
 			// Insert
 			rates[currency] = price;
 		});
