@@ -5,6 +5,8 @@
 		"target": "es2016",
 		"lib": ["es2016"],
 		"strict": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
 		"moduleResolution": "node",
 		"forceConsistentCasingInFileNames": true,
 		"sourceMap": true,
