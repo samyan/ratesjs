@@ -1,7 +1,7 @@
 {
 	"name": "ratesjs",
-	"version": "1.0.3",
-	"description": "Library for get currency rates",
+	"version": "1.0.4",
+	"description": "Library for get currencies rates",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "babel src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
