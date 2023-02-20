@@ -9,11 +9,10 @@ class BinanceProvider extends AbstractProvider {
 	 * Constructor
 	 *
 	 * @param {AxiosInstance} client
-	 * @param {AxiosRequestConfig<any>} clientConfig
 	 * @memberof BinanceProvider
 	 */
-	public constructor(client: AxiosInstance, clientConfig: AxiosRequestConfig<any>) {
-		super(client, clientConfig);
+	public constructor(client: AxiosInstance) {
+		super(client);
 	}
 
 	/**

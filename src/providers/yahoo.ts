@@ -9,11 +9,10 @@ class YahooProvider extends AbstractProvider {
 	 * Constructor
 	 *
 	 * @param {AxiosInstance} client
-	 * @param {AxiosRequestConfig<any>} clientConfig
 	 * @memberof BinanceProvider
 	 */
-	public constructor(client: AxiosInstance, clientConfig: AxiosRequestConfig<any>) {
-		super(client, clientConfig);
+	public constructor(client: AxiosInstance) {
+		super(client);
 	}
 
 	/**
@@ -62,11 +61,11 @@ class YahooProvider extends AbstractProvider {
 	 *
 	 * @param {string} method
 	 * @param {string} endpoint
-	 * @param {AxiosRequestConfig<any>} options
+	 * @param {AxiosRequestConfig<any>} [options]
 	 * @return {*}  {Promise<any>}
-	 * @memberof BinanceProvider
+	 * @memberof YahooProvider
 	 */
-	public async requestHttp(method: string, endpoint: string, options: AxiosRequestConfig<any>): Promise<any> {
+	public async requestHttp(method: string, endpoint: string, options?: AxiosRequestConfig<any>): Promise<any> {
 		// Request
 		const { data } = await this.getClient().request({ method, url: endpoint, ...options });
 

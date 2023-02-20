@@ -6,7 +6,6 @@ import YahooProvider from './providers/yahoo';
 
 class CurrencyRates implements Factory {
 	private axiosInstance: AxiosInstance;
-	private axiosRequestConfig: AxiosRequestConfig;
 	private providers: string[];
 	private defaultProvider: string;
 
@@ -17,7 +16,6 @@ class CurrencyRates implements Factory {
 	 */
 	public constructor() {
         this.axiosInstance = axios.create();
-		this.axiosRequestConfig = {};
 
 		this.providers = ['yahoo', 'binance'];
 		this.defaultProvider = 'binance';
@@ -33,12 +31,12 @@ class CurrencyRates implements Factory {
 	 * @memberof CurrencyRates
 	 */
 	public setProxy(protocol: string, host: string, port: number, auth: { username: string; password: string }): void {
-		this.axiosRequestConfig.proxy = {
+		this.axiosInstance.defaults.proxy = {
 			protocol,
 			host,
 			port,
 			auth
-		};
+		}
 	}
 
 	/**
@@ -67,9 +65,9 @@ class CurrencyRates implements Factory {
 		switch (defaultProvider) {
 			default:
 			case 'binance':
-				return new BinanceProvider(this.axiosInstance, this.axiosRequestConfig);
+				return new BinanceProvider(this.axiosInstance);
 			case 'yahoo':
-				return new YahooProvider(this.axiosInstance, this.axiosRequestConfig);
+				return new YahooProvider(this.axiosInstance);
 		}
 	}
 }

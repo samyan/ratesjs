@@ -4,7 +4,6 @@ import Result from './contracts/result';
 
 abstract class AbstractProvider extends Provider {
 	private client: AxiosInstance;
-	private axiosRequestConfig: AxiosRequestConfig<any>;
 
 	protected base: string;
 	protected targets: string[];
@@ -14,14 +13,12 @@ abstract class AbstractProvider extends Provider {
 	 * Constructor
 	 *
 	 * @param {AxiosInstance} client
-	 * @param {AxiosRequestConfig<any>} axiosRequestConfig
 	 * @memberof AbstractProvider
 	 */
-	public constructor(client: AxiosInstance, axiosRequestConfig: AxiosRequestConfig<any>) {
+	public constructor(client: AxiosInstance) {
 		super();
 
 		this.client = client;
-		this.axiosRequestConfig = axiosRequestConfig;
 
 		this.base = 'USD';
 		this.targets = [];
@@ -65,16 +62,6 @@ abstract class AbstractProvider extends Provider {
 	}
 
 	/**
-	 * Get client config
-	 *
-	 * @return {*}  {AxiosRequestConfig}
-	 * @memberof AbstractProvider
-	 */
-	public getClientConfig(): AxiosRequestConfig {
-		return this.axiosRequestConfig;
-	}
-
-	/**
 	 * Get result
 	 *
 	 * @param {string} [type]
@@ -110,11 +97,11 @@ abstract class AbstractProvider extends Provider {
 	 * @abstract
 	 * @param {string} method
 	 * @param {string} endpoint
-	 * @param {AxiosRequestConfig<any>} options
-	 * @return {*}  {any}
+	 * @param {AxiosRequestConfig<any>} [options]
+	 * @return {*}  {*}
 	 * @memberof AbstractProvider
 	 */
-	protected abstract requestHttp(method: string, endpoint: string, options: AxiosRequestConfig<any>): any;
+	protected abstract requestHttp(method: string, endpoint: string, options?: AxiosRequestConfig<any>): any;
 }
 
 export default AbstractProvider;
