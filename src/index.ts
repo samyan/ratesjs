@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import Factory from './contracts/factory';
 import Provider from './contracts/provider';
 import BinanceProvider from './providers/binance';
