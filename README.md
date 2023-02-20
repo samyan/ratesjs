@@ -18,7 +18,9 @@ const  currencyRates = new  CurrencyRates();
 
 const  result = await  currencyRates
     .getProvider('yahoo')
-    .getLatest('USD', ['RUB', 'GBP']);
+    .setBase('USD')
+    .setTargets(['RUB', 'RUB'])
+    .getResult('latest');
 ````
 
 ```sh
@@ -33,7 +35,9 @@ const  currencyRates = new  CurrencyRates();
 
 const  result = await  currencyRates
     .getProvider('binance')
-    .getLatest('USDT', ['BTC', 'ETH']);
+    .setBase('USDT')
+    .setTargets(['BTC', 'ETH'])
+    .getResult('latest');
 ````
 
 ```sh
