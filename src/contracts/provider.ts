@@ -2,17 +2,6 @@ import Result from './result';
 
 abstract class Provider {
 	/**
-	 * Get latest currency exchange rates
-	 *
-	 * @abstract
-	 * @param {string} base
-	 * @param {string[]} targets
-	 * @return {*}  {Promise<Result>}
-	 * @memberof Provider
-	 */
-	public abstract getLatest(base: string, targets: string[]): Promise<Result>;
-
-	/**
 	 * Set base currency
 	 *
 	 * @abstract
@@ -50,6 +39,17 @@ abstract class Provider {
 	 * @memberof Provider
 	 */
 	public abstract getTypes(): string[];
+
+	/**
+	 * Get latest currency exchange rates
+	 *
+	 * @abstract
+	 * @param {string} base
+	 * @param {string[]} targets
+	 * @return {*}  {Promise<Result>}
+	 * @memberof Provider
+	 */
+	protected abstract getLatest(base: string, targets: string[]): Promise<Result>;
 }
 
 export default Provider;
