@@ -75,8 +75,9 @@ abstract class AbstractProvider extends Provider {
 
 		switch (type || 'latest') {
 			case 'latest':
-			default:
 				return this.getLatest(this.base, this.targets);
+			default:
+				throw new Error('Unknown type of result. Please call [getTypes] function for list available types');
 		}
 	}
 
