@@ -1,8 +1,13 @@
 {
 	"name": "ratesjs",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "Library for get currencies rates",
 	"main": "build/index.js",
+	"homepage": "https://github.com/samyan/ratesjs.git",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/samyan/ratesjs.git"
+	  },
 	"scripts": {
 		"build": "babel src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
 		"build-ts": "tsc"
