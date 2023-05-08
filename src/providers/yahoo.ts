@@ -3,7 +3,7 @@ import { AxiosInstance, AxiosRequestConfig } from 'axios';
 import Result from '../result';
 
 class YahooProvider extends AbstractProvider {
-	private endpoint: string = 'https://query1.finance.yahoo.com/v7/finance/quote';
+	private endpoint: string = 'https://query1.finance.yahoo.com/v7/finance/spark';
 
 	/**
 	 * Constructor
@@ -36,21 +36,30 @@ class YahooProvider extends AbstractProvider {
 
 			params = {
 				symbols: symbols.join(','),
-				fields: 'regularMarketPrice',
+				range: '1d',
+				interval: '5m'
 			};
 		}
 
 		// Request
-		const originalRates: { symbol: string; regularMarketPrice: string }[] = await this.requestHttp('GET', this.endpoint, { params });
+		const originalRates: { symbol: string; response: any[] }[] = await this.requestHttp('GET', this.endpoint, { params });
 
 		// Loop rates
 		originalRates.forEach((originalRate) => {
-			const { symbol, regularMarketPrice } = originalRate;
+			// Extracting root fields
+			const { symbol, response } = originalRate;
 
-			// Extract currency
-			const currency: string = symbol.substring(base.length, symbol.indexOf('=X'));
-			// Insert
-			rates[currency] = String(regularMarketPrice);
+			// Extracting the price
+			const {
+				meta: { regularMarketPrice },
+			} = response[0];
+
+			if (response.length > 0) {
+				// Extract currency
+				const currency: string = symbol.substring(base.length, symbol.indexOf('=X'));
+				// Insert
+				rates[currency] = String(regularMarketPrice);
+			}
 		});
 
 		return new Result(base, rates);
@@ -70,7 +79,7 @@ class YahooProvider extends AbstractProvider {
 		const { data } = await this.getClient().request({ method, url: endpoint, ...options });
 
 		// Parse the response
-		return data['quoteResponse']['result'];
+		return data['spark']['result'];
 	}
 }
 
