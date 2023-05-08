@@ -37,7 +37,7 @@ class YahooProvider extends AbstractProvider {
 			params = {
 				symbols: symbols.join(','),
 				range: '1d',
-				interval: '5m'
+				interval: '5m',
 			};
 		}
 
@@ -49,12 +49,12 @@ class YahooProvider extends AbstractProvider {
 			// Extracting root fields
 			const { symbol, response } = originalRate;
 
-			// Extracting the price
-			const {
-				meta: { regularMarketPrice },
-			} = response[0];
-
 			if (response.length > 0) {
+				// Extracting the price
+				const {
+					meta: { regularMarketPrice },
+				} = response[0];
+				
 				// Extract currency
 				const currency: string = symbol.substring(base.length, symbol.indexOf('=X'));
 				// Insert
