@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 import Factory from './contracts/factory';
 import Provider from './contracts/provider';
 import BinanceProvider from './providers/binance';
@@ -24,18 +25,16 @@ class CurrencyRates implements Factory {
 	/**
 	 * Set proxy
 	 *
-	 * @param {string} protocol
-	 * @param {string} host
-	 * @param {number} port
-	 * @param {{ username: string; password: string }} auth
+	 * @param {string} endpoint
 	 * @memberof CurrencyRates
 	 */
-	public setProxy(protocol: string, host: string, port: number, auth: { username: string; password: string }): void {
-		this.axiosInstance.defaults.proxy = {
-			protocol,
-			host,
-			port,
-			auth
+	public setProxy(endpoint: string): void {
+		if (endpoint.indexOf('https')) {
+			this.axiosInstance.defaults.httpsAgent = new HttpsProxyAgent(endpoint);
+		} else if (endpoint.indexOf('http')) {
+			this.axiosInstance.defaults.httpAgent = new HttpsProxyAgent(endpoint);
+		} else {
+			throw new Error('Unknown proxy protocol');
 		}
 	}
 
