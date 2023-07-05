@@ -29,10 +29,13 @@ class CurrencyRates implements Factory {
 	 * @memberof CurrencyRates
 	 */
 	public setProxy(endpoint: string): void {
-		if (endpoint.indexOf('https')) {
-			this.axiosInstance.defaults.httpsAgent = new HttpsProxyAgent(endpoint);
-		} else if (endpoint.indexOf('http')) {
-			this.axiosInstance.defaults.httpAgent = new HttpsProxyAgent(endpoint);
+		// Instance
+		const agent = new HttpsProxyAgent(endpoint);
+
+		if (endpoint.indexOf('https') > -1) {
+			this.axiosInstance.defaults.httpsAgent = agent;
+		} else if (endpoint.indexOf('http') > -1) {
+			this.axiosInstance.defaults.httpAgent = agent;
 		} else {
 			throw new Error('Unknown proxy protocol');
 		}
