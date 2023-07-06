@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import { HttpsProxyAgent } from 'https-proxy-agent';
 import Factory from './contracts/factory';
 import Provider from './contracts/provider';
 import BinanceProvider from './providers/binance';
 import YahooProvider from './providers/yahoo';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 class CurrencyRates implements Factory {
 	private axiosInstance: AxiosInstance;
@@ -16,7 +16,7 @@ class CurrencyRates implements Factory {
 	 * @memberof CurrencyRates
 	 */
 	public constructor() {
-        this.axiosInstance = axios.create();
+		this.axiosInstance = axios.create();
 
 		this.providers = ['yahoo', 'binance'];
 		this.defaultProvider = 'binance';
@@ -29,16 +29,7 @@ class CurrencyRates implements Factory {
 	 * @memberof CurrencyRates
 	 */
 	public setProxy(endpoint: string): void {
-		// Instance
-		const agent = new HttpsProxyAgent(endpoint);
-
-		if (endpoint.indexOf('https') > -1) {
-			this.axiosInstance.defaults.httpsAgent = agent;
-		} else if (endpoint.indexOf('http') > -1) {
-			this.axiosInstance.defaults.httpAgent = agent;
-		} else {
-			throw new Error('Unknown proxy protocol');
-		}
+		this.axiosInstance.defaults.httpsAgent = new HttpsProxyAgent(endpoint);
 	}
 
 	/**
