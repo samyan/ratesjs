@@ -19,7 +19,7 @@ const  currencyRates = new  CurrencyRates();
 const  result = await  currencyRates
     .getProvider('yahoo')
     .setBase('USD')
-    .setTargets(['RUB', 'RUB'])
+    .setTargets(['RUB', 'GBP'])
     .getResult('latest');
 ````
 
